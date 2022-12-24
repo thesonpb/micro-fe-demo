@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { currency, getProducts } from "./products";
 import { addToCart, useLoggedIn } from "cart/cart";
+import { Link } from "react-router-dom";
 
 export default function HomeContent() {
     const loggedIn = useLoggedIn();
@@ -12,10 +13,14 @@ export default function HomeContent() {
         <div className="my-10 grid grid-cols-4 gap-5">
             {products.map((product) => (
                 <div key={product.id}>
-                    <img src={product.image} alt={product.name} />
+                    <Link to={`/products/${product.id}`}>
+                        <img src={product.image} alt={product.name} />
+                    </Link>
                     <div className="flex">
                         <div className="flex-grow font-bold">
-                            <a>{product.name}</a>
+                            <Link to={`/products/${product.id}`}>
+                                <a>{product.name}</a>
+                            </Link>
                         </div>
                         <div className="flex-end">
                             {currency.format(product.price)}
